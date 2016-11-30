@@ -84,12 +84,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="###操作系统学习　mit6.828
+#####为什么用这个课程因为这个课程有源代码也有书籍还有课件和assignment是比较成熟的课程使用了xv6 kernal 可以在ubuntu下用 make qemu-nox运行很方便
+##正文看书笔记The job of an operating system is to share a computer among multiple programs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="os mit6.828 01">
+<meta property="og:url" content="http://yoursite.com/2016/11/30/os-mit6-828-01/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="###操作系统学习　mit6.828
+#####为什么用这个课程因为这个课程有源代码也有书籍还有课件和assignment是比较成熟的课程使用了xv6 kernal 可以在ubuntu下用 make qemu-nox运行很方便
+##正文看书笔记The job of an operating system is to share a computer among multiple programs">
+<meta property="og:updated_time" content="2016-11-30T07:06:38.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="os mit6.828 01">
+<meta name="twitter:description" content="###操作系统学习　mit6.828
+#####为什么用这个课程因为这个课程有源代码也有书籍还有课件和assignment是比较成熟的课程使用了xv6 kernal 可以在ubuntu下用 make qemu-nox运行很方便
+##正文看书笔记The job of an operating system is to share a computer among multiple programs">
 
 
 
@@ -117,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/30/os-mit6-828-01/"/>
 
 
 
 
 
-  <title> Hexo </title>
+  <title> os mit6.828 01 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -144,9 +154,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -225,9 +233,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -260,10 +268,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/30/os-mit6-828-01/" itemprop="url">
-                  os mit6.828 01
-                </a>
+                os mit6.828 01
               
             
           </h1>
@@ -312,9 +317,7 @@
       
 
       
-        
-          
-            <a id="more"></a>
+        <a id="more"></a>
 <p>###操作系统学习　mit6.828</p>
 <p>#####为什么用这个课程<br>因为这个课程有源代码也有书籍还有课件和assignment是比较成熟的课程<br>使用了xv6 kernal 可以在ubuntu下用 make qemu-nox运行很方便</p>
 <p>##正文看书笔记<br>The job of an operating system is to share a computer among multiple programs<br>and to provide a more useful set of services than the hardware alone supports.<br>这一句写出了os的用途，是为了在多任务的调度方面提供解决方案，同时提供了比硬件接口更成熟更可用的服务<br>The<br>operating system manages and abstracts the low-level hardware, so that, for example, a<br>word processor need not concern itself with which type of disk hardware is being<br>used. It also multiplexes the hardware, allowing many programs to share the computer<br>and run (or appear to run) at the same time. Finally, operating systems provide con-<br>trolled ways for programs to interact, so that they can share data or work together.<br>操作系统抽象管理了低层次的硬件服务，因此程序不用在意自己在使用哪些硬件，应用程序只是在user-mode调用os提供的api而已<br>同时，操作系统更好的分配了cpu，io等资源使程序看上去像是同时运行的即使在单cpu的情况下，ipc(进程间数据共享也是一个重要话题)<br>Each running program, called a<br>process, has memory containing instructions, data, and a stack.<br>每一个进程都存在指令，数据，栈区存储在内存中<br>The instructions im-<br>plement the program’s computation. The data are the variables on which the computa-<br>tion acts. The stack organizes the program’s procedure calls.<br>写的明白!指令区负责执行实现计算过程，数据区负责提供程序所需的数据,栈区负责过程调用<br>When a process needs to invoke a kernel service, it invokes a procedure call in<br>the operating system interface. Such a procedure is called a system call. The system<br>call enters the kernel; the kernel performs the service and returns. Thus a process al-<br>ternates between executing in user space and kernel space<br>系统调用　用户空间　内核空间<br>An xv6 process consists of user-space memory (instructions, data, and stack) and<br>per-process state private to the kernel. Xv6 can time-share processes: it transparently<br>switches the available CPUs among the set of processes waiting to execute. When a<br>process is not executing, xv6 saves its CPU registers, restoring them when it next runs<br>the process. The kernel associates a process identifier, or pid, with each process.<br>进程的信息包括两部分，一部分是存在于用户空间的内存中，另一部分只有内核有权查看<br>xv6是分时系统，当一个进程不执行时，xv6会存储它的cpu寄存器，运行其他进程，然后恢复寄存器内容重新运行<br>pid的概念<br>A process may create a new process using the fork system call. Fork creates a<br>new process, called the child process, with exactly the same memory contents as the<br>calling process, called the parent process. Fork returns in both the parent and the<br>child. In the parent, fork returns the child’s pid; in the child, it returns zero. For ex-<br>ample, consider the following program fragment:<br>父进程，子进程　fork function</p>
@@ -323,16 +326,20 @@
 <p>The exit system call causes the calling process to stop executing and to release re-sources such as memory and open files. The wait system call returns the pid of an<br>exited child of the current process; if none of the caller’s children has exited, wait<br>waits for one to do so.<br>wait是一个阻塞函数，当子进程不exit,它便一直阻塞，否则返回子进程pid<br>Note that the parent and child were executing with different memory and different<br>registers: changing a variable in one does not affect the other.<br>与线程区别，不同进程用不同的内存<br>The exec system call replaces the calling process’s memory with a new memory<br>image loaded from a file stored in the file system</p>
 <p>exec系统调用，将执行进程的内存空间替换为另一个从文件系统中读取出来的内存映像.<br>The file must have a particular for-<br>mat, which specifies which part of the file holds instructions, which part is data, at<br>which instruction to start, etc. xv6 uses the ELF format, which Chapter 2 discusses in<br>more detail. When exec succeeds, it does not return to the calling program; instead,<br>the instructions loaded from the file start executing at the entry point declared in the<br>ELF header.<br>当exec调用成功后并不会回到原来的调用进程中<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> *argv[<span class="number">3</span>];</div><div class="line">argv[<span class="number">0</span>] = <span class="string">"echo"</span>;</div><div class="line">argv[<span class="number">1</span>] = <span class="string">"hello"</span>;</div><div class="line">argv[<span class="number">2</span>] = <span class="number">0</span>;</div><div class="line">exec(<span class="string">"/bin/echo"</span>, argv);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"exec error\n"</span>);</div></pre></td></tr></table></figure></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -341,382 +348,34 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/29/hello-world/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="John Doe">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Hexo">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Hexo" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/29/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/11/29/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-29T14:21:38+08:00">
-                2016-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/28/operating-system-ucb02/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="John Doe">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Hexo">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Hexo" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/28/operating-system-ucb02/" itemprop="url">
-                  operating system ucb02
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-28T19:27:35+08:00">
-                2016-11-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/28/operating-system-ucb01/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="John Doe">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Hexo">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Hexo" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/28/operating-system-ucb01/" itemprop="url">
-                  operating system ucb01
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-28T18:40:33+08:00">
-                2016-11-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>os study</p>
-<h2 id="ucb02"><a href="#ucb02" class="headerlink" title="ucb02"></a>ucb02</h2><h4 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h4><p>DMA - Direct Memory Access for I/O and compute<br>I/O can be completed asynchronously</p>
-<h4 id="Multiprogramming"><a href="#Multiprogramming" class="headerlink" title="Multiprogramming"></a>Multiprogramming</h4><p>*Small jobs not delayed by large jobs<br>More overlap between I/O and CPU<br>need memory protection between programs and OS</p>
-<ul>
-<li>you should forgive me that I really has little interest in history and I jump to lecture 3 directly</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -724,6 +383,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -888,6 +551,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
