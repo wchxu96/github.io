@@ -183,7 +183,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -193,7 +193,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -275,7 +275,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-30T13:58:08+08:00">
                 2016-11-30
               </time>
@@ -316,7 +316,7 @@
           
             <a id="more"></a>
 <h3 id="操作系统学习-mit6-828"><a href="#操作系统学习-mit6-828" class="headerlink" title="操作系统学习　mit6.828"></a>操作系统学习　mit6.828</h3><h5 id="为什么用这个课程"><a href="#为什么用这个课程" class="headerlink" title="为什么用这个课程"></a>为什么用这个课程</h5><p>因为这个课程有源代码也有书籍还有课件和assignment是比较成熟的课程<br>使用了xv6 kernal 可以在ubuntu下用 make qemu-nox运行很方便</p>
-<p>##正文看书笔记<br>The job of an operating system is to share a computer among multiple programs<br>and to provide a more useful set of services than the hardware alone supports.<br>这一句写出了os的用途，是为了在多任务的调度方面提供解决方案，同时提供了比硬件接口更成熟更可用的服务<br>The<br>operating system manages and abstracts the low-level hardware, so that, for example, a<br>word processor need not concern itself with which type of disk hardware is being<br>used. It also multiplexes the hardware, allowing many programs to share the computer<br>and run (or appear to run) at the same time. Finally, operating systems provide con-<br>trolled ways for programs to interact, so that they can share data or work together.<br>操作系统抽象管理了低层次的硬件服务，因此程序不用在意自己在使用哪些硬件，应用程序只是在user-mode调用os提供的api而已<br>同时，操作系统更好的分配了cpu，io等资源使程序看上去像是同时运行的即使在单cpu的情况下，ipc(进程间数据共享也是一个重要话题)<br>Each running program, called a<br>process, has memory containing instructions, data, and a stack.<br>每一个进程都存在指令，数据，栈区存储在内存中<br>The instructions im-<br>plement the program’s computation. The data are the variables on which the computa-<br>tion acts. The stack organizes the program’s procedure calls.<br>写的明白!指令区负责执行实现计算过程，数据区负责提供程序所需的数据,栈区负责过程调用<br>When a process needs to invoke a kernel service, it invokes a procedure call in<br>the operating system interface. Such a procedure is called a system call. The system<br>call enters the kernel; the kernel performs the service and returns. Thus a process al-<br>ternates between executing in user space and kernel space<br>系统调用　用户空间　内核空间<br>An xv6 process consists of user-space memory (instructions, data, and stack) and<br>per-process state private to the kernel. Xv6 can time-share processes: it transparently<br>switches the available CPUs among the set of processes waiting to execute. When a<br>process is not executing, xv6 saves its CPU registers, restoring them when it next runs<br>the process. The kernel associates a process identifier, or pid, with each process.<br>进程的信息包括两部分，一部分是存在于用户空间的内存中，另一部分只有内核有权查看<br>xv6是分时系统，当一个进程不执行时，xv6会存储它的cpu寄存器，运行其他进程，然后恢复寄存器内容重新运行<br>pid的概念<br>A process may create a new process using the fork system call. Fork creates a<br>new process, called the child process, with exactly the same memory contents as the<br>calling process, called the parent process. Fork returns in both the parent and the<br>child. In the parent, fork returns the child’s pid; in the child, it returns zero. For ex-<br>ample, consider the following program fragment:<br>父进程，子进程　fork function</p>
+<h5 id="正文看书笔记"><a href="#正文看书笔记" class="headerlink" title="正文看书笔记"></a>正文看书笔记</h5><p>The job of an operating system is to share a computer among multiple programs<br>and to provide a more useful set of services than the hardware alone supports.<br>这一句写出了os的用途，是为了在多任务的调度方面提供解决方案，同时提供了比硬件接口更成熟更可用的服务<br>The<br>operating system manages and abstracts the low-level hardware, so that, for example, a<br>word processor need not concern itself with which type of disk hardware is being<br>used. It also multiplexes the hardware, allowing many programs to share the computer<br>and run (or appear to run) at the same time. Finally, operating systems provide con-<br>trolled ways for programs to interact, so that they can share data or work together.<br>操作系统抽象管理了低层次的硬件服务，因此程序不用在意自己在使用哪些硬件，应用程序只是在user-mode调用os提供的api而已<br>同时，操作系统更好的分配了cpu，io等资源使程序看上去像是同时运行的即使在单cpu的情况下，ipc(进程间数据共享也是一个重要话题)<br>Each running program, called a<br>process, has memory containing instructions, data, and a stack.<br>每一个进程都存在指令，数据，栈区存储在内存中<br>The instructions im-<br>plement the program’s computation. The data are the variables on which the computa-<br>tion acts. The stack organizes the program’s procedure calls.<br>写的明白!指令区负责执行实现计算过程，数据区负责提供程序所需的数据,栈区负责过程调用<br>When a process needs to invoke a kernel service, it invokes a procedure call in<br>the operating system interface. Such a procedure is called a system call. The system<br>call enters the kernel; the kernel performs the service and returns. Thus a process al-<br>ternates between executing in user space and kernel space<br>系统调用　用户空间　内核空间<br>An xv6 process consists of user-space memory (instructions, data, and stack) and<br>per-process state private to the kernel. Xv6 can time-share processes: it transparently<br>switches the available CPUs among the set of processes waiting to execute. When a<br>process is not executing, xv6 saves its CPU registers, restoring them when it next runs<br>the process. The kernel associates a process identifier, or pid, with each process.<br>进程的信息包括两部分，一部分是存在于用户空间的内存中，另一部分只有内核有权查看<br>xv6是分时系统，当一个进程不执行时，xv6会存储它的cpu寄存器，运行其他进程，然后恢复寄存器内容重新运行<br>pid的概念<br>A process may create a new process using the fork system call. Fork creates a<br>new process, called the child process, with exactly the same memory contents as the<br>calling process, called the parent process. Fork returns in both the parent and the<br>child. In the parent, fork returns the child’s pid; in the child, it returns zero. For ex-<br>ample, consider the following program fragment:<br>父进程，子进程　fork function</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> pid = fork();</div><div class="line"><span class="keyword">if</span>(pid &gt; <span class="number">0</span>)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"parent : child = %d\n"</span>,pid);</div><div class="line">    pid = wait();</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"child %d is done\n"</span>,pid);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(pid == <span class="number">0</span>)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"child: exiting\n"</span>);</div><div class="line">    <span class="built_in">exit</span>();</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line">　　<span class="built_in">printf</span>(<span class="string">"fork error!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>很简单的fork程序，学习wait和exit系统调用的用法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fork():         Create process</div><div class="line">exit():         terminate current process</div><div class="line">wait():         wait for a child process to exit</div></pre></td></tr></table></figure></p>
 <p>The exit system call causes the calling process to stop executing and to release re-sources such as memory and open files. The wait system call returns the pid of an<br>exited child of the current process; if none of the caller’s children has exited, wait<br>waits for one to do so.<br>wait是一个阻塞函数，当子进程不exit,它便一直阻塞，否则返回子进程pid<br>Note that the parent and child were executing with different memory and different<br>registers: changing a variable in one does not affect the other.<br>与线程区别，不同进程用不同的内存<br>The exec system call replaces the calling process’s memory with a new memory<br>image loaded from a file stored in the file system</p>
@@ -398,7 +398,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-29T14:21:38+08:00">
                 2016-11-29
               </time>
@@ -523,7 +523,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-28T19:27:35+08:00">
                 2016-11-28
               </time>
@@ -639,7 +639,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-28T18:40:33+08:00">
                 2016-11-28
               </time>
@@ -755,7 +755,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -806,7 +806,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
