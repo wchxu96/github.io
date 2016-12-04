@@ -84,13 +84,25 @@
 
 
 
+<meta name="description" content="eax, ebx, ecx, edx, esi, edi, ebp, esp等都是X86 汇编语言中CPU上的通用寄存器的名称，是32位的寄存器。如果用C语言来解释，可以把这些寄存器当作变量看待。
+比方说： add eax,-2 ;    //可以认为是给变量eax加上-2这样的一个值。
+这些32位寄存器有多种用途，但每一个都有“专长”，有各自的特别之处。
+EAX  是”累加器”(accumula">
 <meta property="og:type" content="article">
-<meta property="og:title" content="operating system ucb02">
-<meta property="og:url" content="http://yoursite.com/2016/11/28/operating-system-ucb02/index.html">
+<meta property="og:title" content="registers">
+<meta property="og:url" content="http://yoursite.com/2016/12/04/registers/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:updated_time" content="2016-11-28T11:27:35.734Z">
+<meta property="og:description" content="eax, ebx, ecx, edx, esi, edi, ebp, esp等都是X86 汇编语言中CPU上的通用寄存器的名称，是32位的寄存器。如果用C语言来解释，可以把这些寄存器当作变量看待。
+比方说： add eax,-2 ;    //可以认为是给变量eax加上-2这样的一个值。
+这些32位寄存器有多种用途，但每一个都有“专长”，有各自的特别之处。
+EAX  是”累加器”(accumula">
+<meta property="og:updated_time" content="2016-12-04T02:51:46.022Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="operating system ucb02">
+<meta name="twitter:title" content="registers">
+<meta name="twitter:description" content="eax, ebx, ecx, edx, esi, edi, ebp, esp等都是X86 汇编语言中CPU上的通用寄存器的名称，是32位的寄存器。如果用C语言来解释，可以把这些寄存器当作变量看待。
+比方说： add eax,-2 ;    //可以认为是给变量eax加上-2这样的一个值。
+这些32位寄存器有多种用途，但每一个都有“专长”，有各自的特别之处。
+EAX  是”累加器”(accumula">
 
 
 
@@ -118,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/28/operating-system-ucb02/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/04/registers/"/>
 
 
 
 
 
-  <title> operating system ucb02 | Hexo </title>
+  <title> registers | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -235,7 +247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/28/operating-system-ucb02/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/04/registers/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="John Doe">
@@ -259,7 +271,7 @@
             
             
               
-                operating system ucb02
+                registers
               
             
           </h1>
@@ -272,8 +284,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Veröffentlicht am</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-28T19:27:35+08:00">
-                2016-11-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-04T10:50:37+08:00">
+                2016-12-04
               </time>
             
 
@@ -308,7 +320,17 @@
       
 
       
-        
+        <p>eax, ebx, ecx, edx, esi, edi, ebp, esp等都是X86 汇编语言中CPU上的通用寄存器的名称，是32位的寄存器。如果用C语言来解释，可以把这些寄存器当作变量看待。</p>
+<p>比方说： add eax,-2 ;    //可以认为是给变量eax加上-2这样的一个值。</p>
+<p>这些32位寄存器有多种用途，但每一个都有“专长”，有各自的特别之处。</p>
+<p>EAX  是”累加器”(accumulator), 它是很多加法乘法指令的缺省寄存器。</p>
+<p>EBX  是”基地址”(base)寄存器, 在内存寻址时存放基地址。</p>
+<p>ECX  是计数器(counter), 是重复(REP)前缀指令和LOOP指令的内定计数器。</p>
+<p>EDX  则总是被用来放整数除法产生的余数。</p>
+<p>ESI/EDI 分别叫做”源/目标索引寄存器”(source/destination index),因为在很多字符串操作指令中, DS:ESI指向源串,而ES:EDI指向目标串.</p>
+<p>EBP 是”基址指针”(BASE POINTER), 它最经常被用作高级语言函数调用的”框架指针”(frame pointer). 在破解的时候,经常可以看见一个标准的函数起始代码:<br>    　　<br>    　　push ebp ; 保存当前ebp<br>    　　mov ebp,esp ; EBP设为当前堆栈指针<br>    　　sub esp, xxx ; 预留xxx字节给函数临时变量.<br>    　　…<br>    　　<br>    　　这样一来,EBP 构成了该函数的一个框架, 在EBP上方分别是原来的EBP, 返回地址和参数. EBP下方则是临时变量. 函数返回时作 mov esp,ebp/pop ebp/ret  即可.</p>
+<pre><code>ESP  专门用作堆栈指针，被形象地称为栈顶指针，堆栈的顶部是地址小的区域，压入堆栈的数据越多，ESP也就越来越小。在32位平台上，ESP每次减少4字节。
+</code></pre>
       
     </div>
 
@@ -334,8 +356,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/28/operating-system-ucb01/" rel="next" title="operating system ucb01">
-                <i class="fa fa-chevron-left"></i> operating system ucb01
+              <a href="/2016/12/02/assembly-language-80386-02/" rel="next" title="assembly-language-80386-02">
+                <i class="fa fa-chevron-left"></i> assembly-language-80386-02
               </a>
             
           </div>
@@ -343,10 +365,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/29/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
